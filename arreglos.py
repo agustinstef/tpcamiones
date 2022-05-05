@@ -82,9 +82,8 @@ def menu_principal():
 
 
 def menu_administracion():
-    # entra = True
-    opcion_administracion = "1"
-    while opcion_administracion != "v" or opcion_administracion != "V":
+    opcion_administracion ="1"
+    while opcion_administracion != "v" and opcion_administracion != "V":
         print ("-" * 30)
         print ("Menu Administracion : ")
         print ("-" * 30)
@@ -126,19 +125,21 @@ def menu_administracion():
         #     print ("Volver al menu principal")
         #     print("\n")
         #     os.system("CLS")
-            # entra = False
+            
         else:
-            # os.system("CLS")
-            # print("\n")
-            # print ("opcion no valida, por favor elja otra opcion")
-            # print("\n")
-            0
-   
+            os.system("CLS")
+            print("\n")
+            print ("opcion no valida, por favor elja otra opcion")
+            print("\n")
+
+    print("\n")
+    print ("Volver al menu principal")
+    print("\n")
+    os.system("CLS")
 
 def menu_titulares():
-    #  entra = True
-    opcion_titulares = "1"
-    while opcion_titulares != "v" or opcion_titulares != "V":
+     opcion_titulares = "1"
+     while opcion_titulares != "v" and opcion_titulares != "V":
         print("\n")
         print ("-" * 30)
         print ("Menu Titulares : ")
@@ -185,14 +186,12 @@ def menu_titulares():
         #     print ("Volver al menu anterior")
         #     print("\n")
         #     os.system("CLS")
-        #     entra = False
 
         else:
-            # os.system("CLS")
-            # print("\n")
-            # print ("opcion no valida, por favor elija otra opcion")
-            # print("\n")
-            0
+            os.system("CLS")
+            print("\n")
+            print ("opcion no valida, por favor elija otra opcion")
+            print("\n")
 
 
 def menu_recepcion():
