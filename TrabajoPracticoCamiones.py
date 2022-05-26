@@ -1,5 +1,4 @@
 import os
-camiones = 0
 contsoja = 0
 contmaiz = 0
 cont_tara_s = 0
@@ -16,8 +15,8 @@ promedionetomaiz = 0
 
 # os.system("CLS")
 def menu_principal():
-    opcion = float
-    while opcion != 0: 
+    opcion = "1"
+    while opcion != "0": 
         print ("-" * 30)
         print ("Menu principal : ")
         print ("-" * 30)
@@ -42,40 +41,35 @@ def menu_principal():
         print ("-" * 30)
         print ("-" * 30)
         
-        opcion = float(input("selecciona una opcion del menu : "))
-            
-        if opcion == 1:
+        opcion = input("selecciona una opcion del menu : ")
+        while opcion !="1" and opcion!="2" and opcion!="3" and opcion!="4"  and opcion!="5"  and opcion!="6"  and opcion!="7"  and opcion!="8"  and opcion!="0":
+             opcion = input("la opcion ingresada es invalida, por favor ingrese una opcion del menu : ")
+             
+        if opcion == "1":
             os.system("CLS")
             print("\n")
             menu_administracion()
             print("\n")
 
-        elif opcion == 3:
+        elif opcion == "3":
             os.system("CLS")
             print("\n")
             menu_recepcion()
             print("\n")
 
-        elif opcion == 8:
+        elif opcion == "0":
+            print("\n")
+            print ("Fin del programa")
+            print("\n")
+
+        elif opcion == "8":
             os.system("CLS")
             print ("\n")
             menu_reporte()
             print("\n")
+     
 
-        elif opcion == "":
-            os.system("CLS")
-            print("\n")
-            print ("ocurrio un error, vuelva a ingresar una opcion del menu")
-            menu_principal()
-            print("\n")
-
-        elif opcion == 0:
-            print("\n")
-            print ("Fin del programa")
-            print("\n")
-            
-
-        elif (opcion != 1) and (opcion != 3) and (opcion != 8) and (opcion <= 8):
+        elif (opcion == "2") or (opcion == "4") or (opcion == "5") or (opcion == "6") or (opcion == "7"):
             os.system("CLS")
             print("\n")
             print ("En construccion, por favor elija otra opcion")
@@ -83,14 +77,12 @@ def menu_principal():
 
     
         else:
-            os.system("CLS")
-            print("\n") 
-            print ("Opcion no esta dentro del menu, vuelva a ingresar")
-            print("\n")
+            0
 
 
 def menu_administracion():
-    while True:
+    opcion_administracion ="1"
+    while opcion_administracion != "v" and opcion_administracion != "V":
         print ("-" * 30)
         print ("Menu Administracion : ")
         print ("-" * 30)
@@ -126,23 +118,20 @@ def menu_administracion():
             print ("En construccion, por favor elija otra opcion")
             print("\n")
             
-
-        elif opcion_administracion == "V" or opcion_administracion == "v":
-            print("\n")
-            print ("Volver al menu principal")
-            print("\n")
-            os.system("CLS")
-            menu_principal()
         else:
             os.system("CLS")
             print("\n")
             print ("opcion no valida, por favor elja otra opcion")
             print("\n")
 
-        
+    print("\n")
+    print ("Volver al menu principal")
+    print("\n")
+    os.system("CLS")
 
 def menu_titulares():
-     while True:
+     opcion_titulares = "1"
+     while opcion_titulares != "v" and opcion_titulares != "V":
         print("\n")
         print ("-" * 30)
         print ("Menu Titulares : ")
@@ -184,19 +173,8 @@ def menu_titulares():
             print ("En construccion, por favor elija otra opcion")
             print("\n")
 
-        elif opcion_titulares == "V" or opcion_titulares == "v":
-            print("\n")
-            print ("Volver al menu anterior")
-            print("\n")
-            os.system("CLS")
-            break
-
         else:
             os.system("CLS")
-            print("\n")
-            print ("opcion no valida, por favor elija otra opcion")
-            print("\n")
-
 
 def menu_recepcion():
     global contsoja
@@ -217,10 +195,15 @@ def menu_recepcion():
     print("\n")
     contcamiones = camiones
     for i in range (1,camiones + 1):
+
         print("\n")
-        producto = input("ingrese que transporta su camion :")
-        print("\n")
-        if producto == "soja":
+        producto = input("ingrese que transporta su camion (s para soja/ m para maiz) : ")
+        while producto != "s" and producto != "S" and producto != "m" and producto != "M":
+            producto = input ("El producto ingresado no es valido, ingrese nuevamente (s para soja / m para maiz) : ")
+            print("\n")
+
+        if producto == "s" or producto == "S":
+
             contsoja = contsoja + 1
             print("\n")
             tara = int(input("ingrese su tara : "))
@@ -236,19 +219,23 @@ def menu_recepcion():
                 print("\n")
                 peso_bruto = int(input("ingrese su peso bruto : "))
                 print("\n")
+
+                while peso_bruto <= tara:
+                    print("\n")
+                    print("el peso bruto debe ser mayor que la tara")
+                    print("\n")
+                    peso_bruto = int(input ("ingrese nuevamente el peso bruto : "))
+                    print("\n")
+
                 peso_neto = peso_bruto - tara
                 pesonetosoja = pesonetosoja + peso_neto
                 promedionetosoja = pesonetosoja / contsoja
+
                 if peso_neto>0:
                     print("\n")
                     print("para el camion numero ",i," con patente ",patente," su peso neto es de ",peso_neto)
                     print("\n")
-                else: 
-                    print("\n")
-                    print("el peso bruto debe ser mayor que la tara")
-                    print("\n")
-                
-
+            
             else:
                 print("\n")
                 patente = input("ingrese su patente : ")
@@ -256,6 +243,14 @@ def menu_recepcion():
                 camion_maximo_s = patente
                 peso_bruto = int(input("ingrese su peso bruto : "))
                 print("\n")
+
+                while peso_bruto <= tara:
+                    print("\n")
+                    print("el peso bruto debe ser mayor que la tara")
+                    print("\n")
+                    peso_bruto = int(input ("ingrese nuevamente el peso bruto : "))
+                    print("\n")
+
                 peso_neto = peso_bruto - tara
                 pesonetosoja = pesonetosoja + peso_neto
                 promedionetosoja = pesonetosoja / contsoja
@@ -265,7 +260,7 @@ def menu_recepcion():
 
 
         else:
-            if producto == "maiz":
+            if producto == "m" or producto == "M":
                 contmaiz = contmaiz + 1
                 print("\n")
                 tara = int(input("ingrese su tara : "))
@@ -279,16 +274,21 @@ def menu_recepcion():
                         camion_menor_m = patente
                         peso_bruto = int(input("ingrese su peso bruto : "))
                         print("\n")
+
+                        while peso_bruto <= tara:
+                            print("\n")
+                            print("el peso bruto debe ser mayor que la tara")
+                            print("\n")
+                            peso_bruto = int(input ("ingrese nuevamente el peso bruto : "))
+                            print("\n")
+
                         peso_neto= peso_bruto - tara
                         pesonetomaiz = pesonetomaiz + peso_neto
                         promedionetomaiz = pesonetomaiz / contmaiz
+
                         if peso_neto>0: 
                             print("\n")
                             print("para el camion numero ",i," con patente ",patente," su peso neto es de ",peso_neto)
-                            print("\n")
-                        else: 
-                            print("\n")
-                            print("el peso bruto debe ser mayor que la tara")	
                             print("\n")
                 else: 
                     print("\n")
@@ -297,20 +297,22 @@ def menu_recepcion():
                     camion_menor_m = patente
                     peso_bruto = int(input("ingrese su peso bruto : "))
                     print("\n")
+
+                    while peso_bruto <= tara:
+                            print("\n")
+                            print("el peso bruto debe ser mayor que la tara")
+                            print("\n")
+                            peso_bruto = int(input ("ingrese nuevamente el peso bruto : "))
+                            print("\n")
+
                     peso_neto = peso_bruto - tara
                     pesonetomaiz = pesonetomaiz + peso_neto
                     promedionetomaiz = pesonetomaiz / contmaiz
                     print("para el camion numero ",i," con patente ",patente," su peso neto es de ",peso_neto)
-    
         
-            
-
-
-
-
+        
 
 def menu_reporte():
-    while True:
         print("\n")
         print ("-" * 30)
         print ("Reportes")
@@ -339,7 +341,6 @@ def menu_reporte():
         input("Presione Enter para volver al menu anterior : ")
         print ("-" * 30)
         os.system("CLS")
-        menu_principal()
     
 
 
