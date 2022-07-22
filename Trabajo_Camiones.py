@@ -333,36 +333,19 @@ def Alta():
         os.system("CLS")
     if nom_producto == "T" or nom_producto == "M" or nom_producto == "S" or nom_producto == "G" or nom_producto == "C":
         p = 0
-        q = True
-        r = False
-        while productos[p] != "" and q == True:
+        i = 0
+        while productos[p] != "" and p < 2:
             p = p + 1
-            if p == 2 and productos[p] != "":
-                q = False
-        if q == True:
-
-            for i in range (3):
-                if productos[i] == nom_producto:
-                    r = True
-            if r == True:
-                    os.system("CLS")
-                    print("Su producto ya esta en el sistema")
-                    print("\n")
-            else: 
-                productos[p] = nom_producto         
-                os.system("CLS")
-                nom_producto = input("CARGA EXITOSA!!, presione una tecla para volver")
-                os.system("CLS")    
-        else:
-            for i in range (3):
-                if productos[i] == nom_producto:
-                    r = True
-            if r == True:
-                    os.system("CLS")
-                    print("Su producto ya esta en el sistema")
-                    print("\n")
+        if productos[p] == "":
+            while productos[i] != nom_producto and i < 2:
+                i = i + 1
+            if productos [i] != nom_producto:
+                productos[p] = nom_producto
+                print ("CARGA EXITOSA!")
             else:
-                print("se excedio la cantidad de productos, si desea modificar alguno de estos, dirijase a la seccion 'Modificacion'")
+                print("El producto ya se encuentra cargado.")
+        else:
+            print("Ya se cumplio la cantidad maxima de producto. Si quiere modificar alguno vaya a la seccion modificacion.")           
 
 def Baja():
     print("Los productos seleccionados son : ")
@@ -475,35 +458,20 @@ def Entrega_cupo():
         while patente_estado[0][p] != "" and p <7:
             p = p + 1
         if patente_estado[0][p] == "":
-            # print("Desea adquirir un cupo para una nueva patente? : ")
-            # print("\n")
-            # decision = input("Si su respuesta es SI presione S, de lo contrario presione N : ")
-            # while decision != "S" and decision != "s" and decision != "N" and decision != "n":
-            #     os.system("CLS")
-            #     decision = input("Su respuesta no es valida, vuelva a ingresar S o N : ")
-            # if decision == "S" or decision == "s":
-            #     os.system("CLS")
                 aux = input("ingrese una nueva patente: ")
                 caracteres = len(aux)
                 while caracteres<6 or caracteres>7:
                     os.system("CLS")
                     aux = input("la cantidad de caracteres de la patente son invalidos, por favor vuelva a ingresar : ")
                     caracteres = len(aux)
-                if aux != "":
-                    patente_estado[1][p] = "p"
                 os.system("CLS")
-                # print("Asignarle un estado al camion siendo: P-Pendiente, E-En Proceso, C-Cumplido")
-                # patente_estado[1][p] = input("Ingrese el estado del camion: ")
-                # while patente_estado[1][p] != "P" and patente_estado[1][p] != "p" and patente_estado[1][p] != "E" and patente_estado[1][p] != "e" and patente_estado[1][p] != "C" and patente_estado[1][p] != "c":
-                #     os.system("CLS")
-                #     patente_estado[1][p] = ("Error, su respuesta es invalida, vuelva a ingresar : ")
                 while patente_estado[0][c] != aux and c < 7:
                     c = c + 1
                 if patente_estado[0][c] == aux:
                     print("Su patente ya tiene cupo. No se puede tener mas de un cupo por patente.")
-                    patente_estado[1][p] = ""
                     entrada = 0
                 else:
+                    patente_estado[1][p] = "p"
                     patente_estado[0][p] = aux
                     cont_cupos_camiones[0] = cont_cupos_camiones[0] + 1
                     entrada = 0
@@ -536,7 +504,7 @@ def RegistrarPesoBruto():
                         print("Caracter ingresado invalido, por favor cargue los datos correctamente.")
                         print("\n")
                         RegistrarPesoBruto()
-                    while PesosPorPatente[0][p] > 45 or PesosPorPatente[0][p] < 0:
+                    while PesosPorPatente[0][p] > 45 or PesosPorPatente[0][p] < 9:
                         print("Su peso esta fuera del rango permitido o se ingreso un caracter invalido.")
                         print("\n")
                         try: 
@@ -774,3 +742,5 @@ def validar_entrada(opcion):
         return 1 
 
 menu_principal()
+
+                
